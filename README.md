@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Credit Card Fraud Detection (Banking / FinTech)
 
 Imbalanced data par fraud detect karne ka end-to-end ML project.
@@ -36,3 +37,6 @@ Outputs: `outputs/model_comparison.csv`, `outputs/roc_pr_curves.png`, `outputs/f
 4. **Stratified split** se train/test mein same fraud ratio rehta hai.
 5. **Business trade-off:** Recall high = zyada fraud pakda; Precision high = kam false alarms. Threshold isi hisaab se tune karo.
 6. Note: synthetic data par scores real Kaggle data se alag aayenge (real mein ROC-AUC ~0.97+ XGBoost ka).
+=======
+# fraud-detection
+>>>>>>> a8cf0c8389a053ad8e015bf5e43bf120c871b921
