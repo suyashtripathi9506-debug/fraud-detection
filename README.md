@@ -1,42 +1,127 @@
-<<<<<<< HEAD
 # Credit Card Fraud Detection (Banking / FinTech)
 
-Imbalanced data par fraud detect karne ka end-to-end ML project.
-**Models:** Logistic Regression, Random Forest, XGBoost
-**Imbalance handling:** SMOTE (sirf training data par)
-**Metrics:** Precision, Recall, F1-score, ROC-AUC, PR-AUC
+An end-to-end Machine Learning project designed to detect fraudulent credit card transactions using classification algorithms. The project focuses on handling highly imbalanced datasets and evaluating fraud detection performance using appropriate metrics.
+
+## Project Overview
+
+Credit card fraud detection is a binary classification problem in which transactions are classified as:
+- **Legitimate (0):** Normal credit card transactions.
+- **Fraudulent (1):** Suspicious or unauthorized transactions.
+
+The project uses machine learning techniques to identify fraudulent transactions while addressing class imbalance.
+
+## Machine Learning Models
+
+The following classification algorithms are implemented:
+
+1. Logistic Regression
+2. Random Forest
+3. XGBoost
+
+## Imbalanced Data Handling
+
+- Applied **SMOTE (Synthetic Minority Over-sampling Technique)** to balance the training dataset.
+- SMOTE is applied only to training data to prevent data leakage.
+- Used stratified train-test splitting to maintain the original fraud ratio in both datasets.
+
+## Evaluation Metrics
+
+Model performance is evaluated using:
+
+- Precision
+- Recall
+- F1-Score
+- ROC-AUC
+- PR-AUC
+- Confusion Matrix
+
+PR-AUC is used as an important evaluation metric because fraud detection datasets are highly imbalanced.
 
 ## Project Structure
-| File | Kaam |
-|---|---|
-| `config.py` | Saari settings (paths, split, SMOTE ratio) |
-| `data_loader.py` | Dataset load (nahi mila to synthetic data) |
-| `preprocess.py` | Cleaning, scaling, stratified split, SMOTE |
-| `models.py` | 3 models ki definition |
-| `evaluate.py` | Metrics, confusion matrix, ROC/PR plots |
-| `train.py` | Main pipeline - yahi run karo |
-| `predict.py` | Naye transactions par prediction |
 
-## Setup
+| File | Description |
+|---|---|
+| `config.py` | Manages project configurations, paths, and SMOTE settings. |
+| `data_loader.py` | Loads the dataset or generates synthetic data if the dataset is unavailable. |
+| `preprocess.py` | Handles data cleaning, scaling, stratified splitting, and SMOTE. |
+| `models.py` | Defines the machine learning classification models. |
+| `evaluate.py` | Calculates evaluation metrics and generates confusion matrices and ROC/PR curves. |
+| `train.py` | Executes the complete model training and evaluation pipeline. |
+| `predict.py` | Predicts whether new transactions are fraudulent or legitimate. |
+
+## Installation and Setup
+
+Install the required Python dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
-Real dataset: Kaggle "Credit Card Fraud Detection" (ULB) se `creditcard.csv` download karke `data/` mein rakho.
 
-## Run
+### Dataset
+
+Download the **Credit Card Fraud Detection Dataset** from Kaggle (ULB).
+
+Dataset: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+
+Place the downloaded `creditcard.csv` file inside the `data/` directory.
+
+## How to Run
+
+### Step 1: Train Models
+
 ```bash
-python train.py     # train + evaluate + save models/plots
-python predict.py   # sample predictions
+python train.py
 ```
-Outputs: `outputs/model_comparison.csv`, `outputs/roc_pr_curves.png`, `outputs/feature_importance.png`, `models/*.pkl`
 
-## Key Points (Viva / Interview)
-1. **Accuracy misleading hai** - 99.8% normal hain, isliye Precision/Recall/F1/PR-AUC dekhte hain.
-2. **SMOTE sirf train par** - test par lagane se data leakage hota hai.
-3. **Scaler sirf train par fit** hota hai.
-4. **Stratified split** se train/test mein same fraud ratio rehta hai.
-5. **Business trade-off:** Recall high = zyada fraud pakda; Precision high = kam false alarms. Threshold isi hisaab se tune karo.
-6. Note: synthetic data par scores real Kaggle data se alag aayenge (real mein ROC-AUC ~0.97+ XGBoost ka).
-=======
-# fraud-detection
->>>>>>> a8cf0c8389a053ad8e015bf5e43bf120c871b921
+This command:
+- Loads and preprocesses the dataset.
+- Splits the data into training and testing sets.
+- Applies SMOTE to the training data.
+- Trains multiple machine learning models.
+- Evaluates model performance.
+- Saves trained models and evaluation plots.
+
+### Step 2: Make Predictions
+
+```bash
+python predict.py
+```
+
+This command generates predictions for sample transactions using the trained models.
+
+## Output Files
+
+The project generates the following outputs:
+
+- `outputs/model_comparison.csv` – Model performance comparison.
+- `outputs/roc_pr_curves.png` – ROC and Precision-Recall curves.
+- `outputs/feature_importance.png` – Feature importance visualization.
+- `models/*.pkl` – Saved trained machine learning models.
+
+## Key Technical Highlights
+
+1. **Accuracy vs. Fraud Detection:** Accuracy can be misleading on highly imbalanced datasets. Precision, Recall, F1-score, and PR-AUC provide more meaningful insights.
+2. **SMOTE:** Applied only to training data to prevent data leakage.
+3. **Feature Scaling:** The scaler is fitted on training data only and then applied to testing data.
+4. **Stratified Sampling:** Maintains a similar fraud-to-legitimate transaction ratio in training and testing datasets.
+5. **Business Trade-off:** High Recall helps identify more fraudulent transactions, while high Precision reduces false fraud alerts.
+6. **Threshold Optimization:** Classification thresholds can be adjusted according to business requirements.
+
+**Note:** Performance scores obtained using synthetic data may differ significantly from results on the original Kaggle dataset.
+
+## Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- XGBoost
+- Imbalanced-learn (SMOTE)
+- Matplotlib
+- Seaborn
+- Joblib
+- Git & GitHub
+
+## Project Objective
+
+To build a reliable machine learning pipeline that identifies potentially fraudulent credit card transactions, handles imbalanced data, and supports data-driven fraud detection in the Banking and FinTech domain.
